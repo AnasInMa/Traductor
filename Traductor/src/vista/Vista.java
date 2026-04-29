@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.Color;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -14,6 +16,8 @@ public class Vista extends JPanel{
 	private JTextArea taEspañol, taIngles;
 	
 	private JButton bIntercambiar, bTraducir;
+	
+	private static Color colorVerde;
 
 	static {
 		
@@ -22,6 +26,8 @@ public class Vista extends JPanel{
 		
 		filasAreaTexto = 10;
 		columnasAreaTexto = 30;
+		
+		colorVerde = new Color(170, 255, 199);
 	}
 	
 	public Vista() {
@@ -33,8 +39,12 @@ public class Vista extends JPanel{
 		panel1.add(panelEspañol());
 		panel1.add(panelIngles());
 		
+		panel1.setBackground(colorVerde);
+		
 		this.add(panel1);
 		this.add(panelBotones());
+		
+		this.setBackground(colorVerde);
 	}
 	
 	public void control(Controlador c) {
@@ -47,7 +57,9 @@ public class Vista extends JPanel{
 		
 		JPanel panel = new JPanel();
 		
-		panel.add(new JScrollPane(taEspañol = añadeAreaTexto("Español", "Introduzca aqui el texto")));
+		panel.add(new JScrollPane(taEspañol = añadeAreaTexto("Español", "Introduzca aqui el texto", true)));
+		
+		panel.setBackground(colorVerde);
 		
 		return panel;
 	}
@@ -56,16 +68,20 @@ public class Vista extends JPanel{
 		
 		JPanel panel = new JPanel();
 		
-		panel.add(new JScrollPane(taIngles = añadeAreaTexto("Inglés", "Traduccion")));
+		panel.add(new JScrollPane(taIngles = añadeAreaTexto("Inglés", "Traduccion", false)));
+		
+		panel.setBackground(colorVerde);
 		
 		return panel;
 	}
 	
-	private JTextArea añadeAreaTexto(String titulo, String textoInicial) {
+	private JTextArea añadeAreaTexto(String titulo, String textoInicial, boolean editable) {
 		
 		JTextArea ta = new JTextArea(textoInicial, filasAreaTexto, columnasAreaTexto);
 		
 		ta.setBorder(new TitledBorder(titulo));
+		
+		if(!editable) ta.setEnabled(false);
 		
 		return ta;
 	}
@@ -83,6 +99,8 @@ public class Vista extends JPanel{
 		panel.add(bIntercambiar);
 		panel.add(new JSeparator());
 		panel.add(bTraducir);
+		
+		panel.setBackground(colorVerde);
 		
 		return panel;
 	}

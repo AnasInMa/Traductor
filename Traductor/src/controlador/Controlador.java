@@ -16,20 +16,19 @@ public class Controlador implements FocusListener{
 		vista = v;
 		
 		vista.control(this);
+		
+		textoEspañol = vista.getTaEspañol().getText();
+		textoIngles = vista.getTaIngles().getText();
 	}
 	
 	@Override
 	public void focusGained(FocusEvent e) {
 		
-		if(e.getSource() == vista.getTaEspañol()) {
+		if(e.getSource() == vista.getTaEspañol() && vista.getTaEspañol().getText().equals(textoEspañol)) {
 		
-			textoEspañol = vista.getTaEspañol().getText();
-			
 			vista.getTaEspañol().setText("");
 			
-		} else {
-			
-			textoIngles = vista.getTaIngles().getText();
+		} else if(e.getSource() == vista.getTaIngles() && vista.getTaIngles().getText().equals(textoIngles)) {
 			
 			vista.getTaIngles().setText("");
 		}
@@ -40,11 +39,11 @@ public class Controlador implements FocusListener{
 	@Override
 	public void focusLost(FocusEvent e) {
 		
-		if(e.getSource() == vista.getTaEspañol()) {
+		if(e.getSource() == vista.getTaEspañol() && vista.getTaEspañol().getText().isEmpty()) {
 			
 			vista.getTaEspañol().setText(textoEspañol);
 			
-		} else {
+		} else if(e.getSource() == vista.getTaIngles() && vista.getTaIngles().getText().isEmpty()){
 			
 			vista.getTaIngles().setText(textoIngles);
 		}
