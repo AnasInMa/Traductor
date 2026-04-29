@@ -1,0 +1,4 @@
+cat-gato
+dog-perro
+person-persona
+house-casa
