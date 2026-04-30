@@ -89,7 +89,11 @@ public class VistaEspañolIngles extends JPanel{
 		
 		ta.setBorder(new TitledBorder(titulo));
 		
-		if(!editable) ta.setEnabled(false);
+		if(!editable) {
+			
+			ta.setEditable(false);
+			ta.setFocusable(false);
+		}
 		
 		return ta;
 	}
